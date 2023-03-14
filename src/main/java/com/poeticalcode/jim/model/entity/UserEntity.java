@@ -1,4 +1,4 @@
-package com.poeticalcode.jim.entity;
+package com.poeticalcode.jim.model.entity;
 
 import java.sql.Date;
 

@@ -11,8 +11,11 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.poeticalcode.jim.entity.UserEntity;
+import com.poeticalcode.jim.model.entity.UserEntity;
+import com.poeticalcode.jim.model.reponse.ResponseResult;
+import com.poeticalcode.jim.model.request.CreateUserForm;
 import com.poeticalcode.jim.service.IUserService;
+import com.poeticalcode.jim.utils.ResponseResultUtil;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -34,17 +37,17 @@ public class UserController {
    * @return
    */
   @GetMapping("/list")
-  public Map<String, Object> userList() {
+  public ResponseResult userList() {
     List<UserEntity> list = userService.list();
     HashMap<String, Object> res = new HashMap<>();
     res.put("data", list);
     res.put("code", 1);
-    return res;
+    return ResponseResultUtil.GenSuccessResult(res, "添加成功");
   }
 
   @PostMapping("")
-  public Map<String, Object> createUser(@RequestBody UserEntity user) {
-    log.info("userEntity = {}", user);
+  public Map<String, Object> createUser(@RequestBody CreateUserForm form) {
+    log.info("CreateUserForm = {}", form);
     return null;
   }
 
