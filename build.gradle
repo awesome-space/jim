@@ -25,6 +25,10 @@ dependencies {
 	implementation 'com.auth0:java-jwt:4.3.0'
 	// hutool 工具类
 	implementation 'cn.hutool:hutool-all:5.8.15'
+	// mysql 驱动类
+	implementation 'mysql:mysql-connector-java:8.0.32'
+	// MybatisPlus 
+	implementation 'com.baomidou:mybatis-plus-boot-starter:3.5.3.1'
 }
 
 tasks.named('test') {
