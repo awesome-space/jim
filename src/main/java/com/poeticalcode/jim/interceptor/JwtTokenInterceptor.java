@@ -9,6 +9,7 @@ import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.poeticalcode.jim.config.JwtTokenConfig;
+import com.poeticalcode.jim.utils.JwtUtil;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -31,21 +32,28 @@ public class JwtTokenInterceptor implements HandlerInterceptor {
   public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
     // 获取 Token
     log.info("jwtTokenConfig = {}", jwtTokenConfig);
+    // String token = JwtUtil.getToken(request);
+    // if (JwtUtil.verify(token, "userId")) {
+    //   log.info("verify failed ");
+    //   return true;
+    // }
+    // log.info("verify pass ");
     // 校验 Token
-    return HandlerInterceptor.super.preHandle(request, response, handler);
+    return true;
   }
+
+
+
 
   @Override
   public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler,
       @Nullable ModelAndView modelAndView) throws Exception {
-    // TODO Auto-generated method stub
     HandlerInterceptor.super.postHandle(request, response, handler, modelAndView);
   }
 
   @Override
   public void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object handler,
       @Nullable Exception ex) throws Exception {
-    // TODO Auto-generated method stub
     HandlerInterceptor.super.afterCompletion(request, response, handler, ex);
   }
 
