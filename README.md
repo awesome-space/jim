@@ -1,8 +1,5 @@
-# jim
-采用 Java 语言编写的 im chat
+## jim
+采用 Java 语言编写的 im
 
-
-技术栈 
-
-
-SpringCloud + redis + MybatisPlus + mysql + jwt
+### 项目进度
+1. 所有接口支持跨域
