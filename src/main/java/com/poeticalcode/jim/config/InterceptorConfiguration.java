@@ -8,7 +8,7 @@ import com.poeticalcode.jim.interceptor.JwtTokenInterceptor;
 
 /**
  * 拦截器配置
- * 
+ *
  * @author poeticalcode
  */
 @Configuration
@@ -25,7 +25,8 @@ public class InterceptorConfiguration implements WebMvcConfigurer {
    */
   @Override
   public void addInterceptors(InterceptorRegistry registry) {
-    registry.addInterceptor(jwtTokenInterceptor);
+    // 排除登录接口
+    registry.addInterceptor(jwtTokenInterceptor).excludePathPatterns("/api/v1/user/login", "/api/v1/user/register");
   }
 
 }

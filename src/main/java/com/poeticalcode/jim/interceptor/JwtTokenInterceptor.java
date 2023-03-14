@@ -13,9 +13,11 @@ import com.poeticalcode.jim.utils.JwtUtil;
 
 import lombok.extern.slf4j.Slf4j;
 
+import java.util.Objects;
+
 /**
  * JwtToken 拦截器
- * 
+ *
  * @author poeticalcode
  */
 @Slf4j
@@ -32,14 +34,15 @@ public class JwtTokenInterceptor implements HandlerInterceptor {
   public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
     // 获取 Token
     log.info("jwtTokenConfig = {}", jwtTokenConfig);
-    // String token = JwtUtil.getToken(request);
-    // if (JwtUtil.verify(token, "userId")) {
-    //   log.info("verify failed ");
-    //   return true;
-    // }
-    // log.info("verify pass ");
+    String token = JwtUtil.getToken(request);
+    log.info("token = {}",  token);
+    if (Objects.nonNull(token) && JwtUtil.verify(token, "userId")) {
+        log.info("verify pass ");
+       return true;
+    }
+    log.info("verify failed ");
     // 校验 Token
-    return true;
+    return false;
   }
 
 
