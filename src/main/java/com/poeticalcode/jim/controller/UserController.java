@@ -14,9 +14,14 @@ import org.springframework.web.bind.annotation.RestController;
 import com.poeticalcode.jim.entity.UserEntity;
 import com.poeticalcode.jim.service.IUserService;
 
+import lombok.extern.slf4j.Slf4j;
+
 /**
  * 用户相关 api
+ * 
+ * @author poeticalcode
  */
+@Slf4j
 @RestController
 @RequestMapping("/v1/user")
 public class UserController {
@@ -39,7 +44,7 @@ public class UserController {
 
   @PostMapping("")
   public Map<String, Object> createUser(@RequestBody UserEntity user) {
-    System.out.printf("userEntity = " + user);
+    log.info("userEntity = {}", user);
     return null;
   }
 
