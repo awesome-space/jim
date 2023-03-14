@@ -14,7 +14,7 @@ import com.poeticalcode.jim.interceptor.JwtTokenInterceptor;
 @Configuration
 public class InterceptorConfiguration implements WebMvcConfigurer {
 
-  private JwtTokenInterceptor jwtTokenInterceptor;
+  private final JwtTokenInterceptor jwtTokenInterceptor;
 
   public InterceptorConfiguration(JwtTokenInterceptor jwtTokenInterceptor) {
     this.jwtTokenInterceptor = jwtTokenInterceptor;

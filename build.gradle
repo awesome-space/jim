@@ -15,23 +15,18 @@ configurations {
 }
 
 repositories {
+	mavenLocal()
 	mavenCentral()
 }
 
 dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-web'
-	// 参数校验
-	implementation 'org.springframework.boot:spring-boot-starter-validation'
-	testImplementation 'org.springframework.boot:spring-boot-starter-test'
-	// jwt 
+	implementation 'org.springframework.boot:spring-boot-starter-validation' // 参数校验
+	testImplementation 'org.springframework.boot:spring-boot-starter-test' // jwt
 	implementation 'com.auth0:java-jwt:4.3.0'
-	// hutool 工具类
-	implementation 'cn.hutool:hutool-all:5.8.15'
-	// mysql 驱动类
-	implementation 'mysql:mysql-connector-java:8.0.32'
-	// MybatisPlus 
-	implementation 'com.baomidou:mybatis-plus-boot-starter:3.5.3.1'
-
+	implementation 'cn.hutool:hutool-all:5.8.15' // hutool 工具类
+	implementation 'mysql:mysql-connector-java:8.0.32' // mysql 驱动类
+	implementation 'com.baomidou:mybatis-plus-boot-starter:3.5.3.1' // MybatisPlus
 
 	compileOnly 'org.projectlombok:lombok:1.18.26'
 	annotationProcessor 'org.projectlombok:lombok:1.18.26'
