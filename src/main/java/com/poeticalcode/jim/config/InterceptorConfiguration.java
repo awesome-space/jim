@@ -26,7 +26,11 @@ public class InterceptorConfiguration implements WebMvcConfigurer {
   @Override
   public void addInterceptors(InterceptorRegistry registry) {
     // 排除登录接口
-    registry.addInterceptor(jwtTokenInterceptor).excludePathPatterns("/api/v1/user/login", "/api/v1/user/register");
+    registry.addInterceptor(jwtTokenInterceptor)
+        .addPathPatterns("/**")
+        .excludePathPatterns("/api/v1/user/login", "/api/v1/user/register")
+        .excludePathPatterns("/v1/user/login");
+
   }
 
 }

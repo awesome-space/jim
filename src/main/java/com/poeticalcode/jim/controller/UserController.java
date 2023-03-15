@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.poeticalcode.jim.config.JwtTokenConfig;
 import com.poeticalcode.jim.model.entity.UserEntity;
 import com.poeticalcode.jim.model.reponse.ResponseResult;
 import com.poeticalcode.jim.model.request.CreateUserForm;
@@ -89,6 +90,7 @@ public class UserController {
     if (Objects.nonNull(user)) {
       Map<String, String> res = new HashMap<String, String>();
       res.put("token", JwtUtil.sign(user.getId()));
+      res.put("headerName", JwtUtil.headerName());
       return ResponseResultUtil.GenSuccessResult(res, "登录成功");
     }
     return ResponseResultUtil.GenFailureResult("登录失败");

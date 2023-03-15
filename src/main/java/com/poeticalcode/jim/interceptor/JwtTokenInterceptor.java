@@ -24,29 +24,18 @@ import java.util.Objects;
 @Component
 public class JwtTokenInterceptor implements HandlerInterceptor {
 
-  private JwtTokenConfig jwtTokenConfig;
-
-  public JwtTokenInterceptor(JwtTokenConfig jwtTokenConfig) {
-    this.jwtTokenConfig = jwtTokenConfig;
-  }
-
   @Override
   public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
-    // 获取 Token
-    log.info("jwtTokenConfig = {}", jwtTokenConfig);
     String token = JwtUtil.getToken(request);
-    log.info("token = {}",  token);
-    if (Objects.nonNull(token) && JwtUtil.verify(token, "userId")) {
-        log.info("verify pass ");
-       return true;
+    log.info("token = {}", token);
+    if (Objects.nonNull(token) && JwtUtil.verify(token)) {
+      log.info("verify pass ");
+      return true;
     }
     log.info("verify failed ");
     // 校验 Token
     return false;
   }
-
-
-
 
   @Override
   public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler,

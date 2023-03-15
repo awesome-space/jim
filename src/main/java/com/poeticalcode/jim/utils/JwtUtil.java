@@ -1,6 +1,10 @@
 package com.poeticalcode.jim.utils;
 
 import java.sql.Date;
+import java.time.LocalDateTime;
+import java.util.Calendar;
+import java.util.HashMap;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -26,8 +30,8 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 @Component
 public class JwtUtil {
-
   private static JwtTokenConfig jwtTokenConfig;
+  private static Algorithm algorithm;
 
   /**
    * 校验 token 是否正确
@@ -35,12 +39,9 @@ public class JwtUtil {
    * @param token
    * @return 是否正确
    */
-  public static boolean verify(String token, String userId) throws Exception {
+  public static boolean verify(String token) throws Exception {
     try {
-      Algorithm algorithm = Algorithm.HMAC256(jwtTokenConfig.getSecret());
-      JWTVerifier verifier = JWT.require(algorithm)
-          .withClaim("userId", userId)
-          .build();
+      JWTVerifier verifier = JWT.require(algorithm).build();
       verifier.verify(token);
       return true;
     } catch (TokenExpiredException e) {
@@ -51,14 +52,14 @@ public class JwtUtil {
   }
 
   /**
-   * 从 Token 中获取 UserId
+   * 从 Token 中获取 UId
    *
    * @return token中包含的用户名
    */
-  public static String getUserId(String token) {
+  public static String getUId(String token) {
     try {
       DecodedJWT jwt = JWT.decode(token);
-      return jwt.getClaim("userId").asString();
+      return jwt.getClaim("uid").asString();
     } catch (JWTDecodeException e) {
       throw new JWTDecodeException(e.getMessage());
     }
@@ -69,14 +70,14 @@ public class JwtUtil {
    * 
    * @return
    */
-  public static String sign(String userId) throws Exception {
-    Algorithm algorithm = Algorithm.HMAC256(jwtTokenConfig.getSecret());
-    // 设置过期时间
-    Date expirDate = new Date(System.currentTimeMillis() + jwtTokenConfig.getExpiration() * 1000);
+  public static String sign(String uid) throws Exception {
     try {
+      long curr = System.currentTimeMillis();
+      log.info("ExpiresAt {}", new Date(curr + jwtTokenConfig.getExpiration() * 1000));
       return JWT.create()
-          .withClaim("userId", userId) // 对 userId 进行签名
-          .withExpiresAt(expirDate) // 过期时间
+          .withClaim("uid", uid)
+          .withIssuedAt(new Date(curr))
+          .withExpiresAt(new Date(curr + jwtTokenConfig.getExpiration() * 1000))
           .sign(algorithm);
     } catch (Exception e) {
       throw new Exception("sign error ");
@@ -90,17 +91,22 @@ public class JwtUtil {
    * @return token
    */
   public static String getToken(HttpServletRequest request) {
-    log.info("jwtTokenConfig = {}", jwtTokenConfig);
-    String requestHeader = request.getHeader(jwtTokenConfig.getHeadername());
-    String token = null;
-    if (requestHeader != null && requestHeader.startsWith("Bearer ")) {
-      token = requestHeader.substring(7);
-    }
-    return token;
+    return request.getHeader(jwtTokenConfig.getHeadername());
   }
-  
+
+  /**
+   * 获取 Token 保存的名字
+   * 
+   * @return
+   */
+  public static String headerName() {
+    return jwtTokenConfig.getHeadername();
+  }
+
   @Autowired
   public void setJwtTokenConfig(JwtTokenConfig jwtTokenConfig) {
     JwtUtil.jwtTokenConfig = jwtTokenConfig;
+    JwtUtil.algorithm = Algorithm.HMAC256(jwtTokenConfig.getSecret());
   }
+
 }
