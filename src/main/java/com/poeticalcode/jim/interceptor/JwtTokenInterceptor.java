@@ -8,7 +8,6 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.poeticalcode.jim.config.JwtTokenConfig;
 import com.poeticalcode.jim.utils.JwtUtil;
 
 import lombok.extern.slf4j.Slf4j;

@@ -11,11 +11,11 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.poeticalcode.jim.config.JwtTokenConfig;
 import com.poeticalcode.jim.model.entity.UserEntity;
 import com.poeticalcode.jim.model.reponse.ResponseResult;
 import com.poeticalcode.jim.model.request.CreateUserForm;
@@ -94,6 +94,13 @@ public class UserController {
       return ResponseResultUtil.GenSuccessResult(res, "登录成功");
     }
     return ResponseResultUtil.GenFailureResult("登录失败");
+  }
+
+
+  @PutMapping("password")
+  public ResponseResult modifyPassword(@RequestBody LoginForm loginForm) {
+
+    return ResponseResultUtil.GenFailureResult("修改成功");
   }
 
   @Autowired
