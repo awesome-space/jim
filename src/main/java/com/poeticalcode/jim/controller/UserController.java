@@ -20,6 +20,7 @@ import com.poeticalcode.jim.model.entity.UserEntity;
 import com.poeticalcode.jim.model.reponse.ResponseResult;
 import com.poeticalcode.jim.model.request.CreateUserForm;
 import com.poeticalcode.jim.model.request.LoginForm;
+import com.poeticalcode.jim.model.request.ModifyPasswordForm;
 import com.poeticalcode.jim.service.IUserService;
 import com.poeticalcode.jim.utils.JwtUtil;
 import com.poeticalcode.jim.utils.ResponseResultUtil;
@@ -96,10 +97,12 @@ public class UserController {
     return ResponseResultUtil.GenFailureResult("登录失败");
   }
 
-
-  @PutMapping("password")
-  public ResponseResult modifyPassword(@RequestBody LoginForm loginForm) {
-
+  /**
+   * 修改密码
+   */
+  @PutMapping("/password")
+  public ResponseResult modifyPassword(@RequestBody ModifyPasswordForm form) {
+    log.info("ModifyPasswordForm === {}", form);
     return ResponseResultUtil.GenFailureResult("修改成功");
   }
 
