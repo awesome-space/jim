@@ -44,6 +44,8 @@ public class WebSocketController implements WebSocketHandler {
   @Override
   public void afterConnectionClosed(WebSocketSession session, CloseStatus closeStatus) throws Exception {
     System.out.println("WebSocket连接已关闭，关闭状态为：" + closeStatus);
+
+    sessions.remove(session);
     log.info("WebSocket连接已关闭,关闭状态为: {}", closeStatus);
   }
 
@@ -52,6 +54,15 @@ public class WebSocketController implements WebSocketHandler {
   public boolean supportsPartialMessages() {
     return false;
   }
+
+
+
+
+
+
+
+
+
 
 
 }
