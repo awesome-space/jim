@@ -33,6 +33,18 @@ public class MessageEntity {
 
 
   /**
+   * 目标
+   */
+  private Long targetUId;
+
+
+  /**
+   * 消息来自
+   */
+  private Long sourceUId;
+
+
+  /**
    * 创建时间
    */
   private Date createdAt;
