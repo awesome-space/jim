@@ -4,14 +4,14 @@ import com.poeticalcode.jim.model.reponse.ResponseResult;
 
 /**
  * 响应结果工具类
- * 
+ *
  * @author poeticalcode
  */
 public class ResponseResultUtil {
 
   /**
    * 生成 成功结果
-   * 
+   *
    * @param message 响应信息
    * @return
    */
@@ -21,7 +21,7 @@ public class ResponseResultUtil {
 
   /**
    * 生成 成功结果
-   * 
+   *
    * @param o
    * @return
    */
@@ -31,7 +31,7 @@ public class ResponseResultUtil {
 
   /**
    * 生成 成功结果
-   * 
+   *
    * @param o       响应数据
    * @param message 响应信息
    * @return
@@ -42,8 +42,8 @@ public class ResponseResultUtil {
 
   /**
    * 生成 失败结果
-   * 
-   * @param o
+   *
+   * @param message
    * @return
    */
   public static ResponseResult GenFailureResult(String message) {
