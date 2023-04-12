@@ -37,7 +37,7 @@ public class ResponseResultUtil {
    * @return
    */
   public static ResponseResult GenSuccessResult(Object o, String message) {
-    return ResponseResult.builder().code(1).message("success").data(o).build();
+    return ResponseResult.builder().code(1).message(message).data(o).build();
   }
 
   /**
