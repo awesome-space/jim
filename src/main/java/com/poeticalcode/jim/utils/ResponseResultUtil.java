@@ -4,7 +4,6 @@ import com.poeticalcode.jim.model.reponse.ResponseResult;
 
 /**
  * 响应结果工具类
- *
  * @author poeticalcode
  */
 public class ResponseResultUtil {
@@ -41,7 +40,7 @@ public class ResponseResultUtil {
   }
 
   /**
-   * 生成 失败结果
+   * 生成失败结果
    *
    * @param message
    * @return
