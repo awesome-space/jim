@@ -27,12 +27,12 @@ public class JwtTokenInterceptor implements HandlerInterceptor {
   public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
     String token = JwtUtil.getToken(request);
     log.info("token = {}", token);
+    // 校验 Token
     if (Objects.nonNull(token) && JwtUtil.verify(token)) {
       log.info("verify pass ");
       return true;
     }
     log.info("verify failed ");
-    // 校验 Token
     return false;
   }
 
