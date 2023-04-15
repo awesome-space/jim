@@ -23,6 +23,14 @@ import java.util.Objects;
 @Component
 public class JwtTokenInterceptor implements HandlerInterceptor {
 
+  /**
+   * 处理之前
+   * @param request current HTTP request
+   * @param response current HTTP response
+   * @param handler chosen handler to execute, for type and/or instance evaluation
+   * @return
+   * @throws Exception
+   */
   @Override
   public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
     String token = JwtUtil.getToken(request);
