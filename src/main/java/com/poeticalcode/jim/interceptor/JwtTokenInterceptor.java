@@ -24,10 +24,10 @@ import java.util.Objects;
 public class JwtTokenInterceptor implements HandlerInterceptor {
 
   /**
-   * 处理之前
-   * @param request current HTTP request
-   * @param response current HTTP response
-   * @param handler chosen handler to execute, for type and/or instance evaluation
+   * 处理之前，在这里可以做 token 验证
+   * @param request current HTTP request 请求
+   * @param response current HTTP response 相应
+   * @param handler chosen handler to execute, for type and/or instance evaluation 
    * @return
    * @throws Exception
    */
