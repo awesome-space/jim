@@ -40,10 +40,14 @@ public class JwtTokenInterceptor implements HandlerInterceptor {
       log.info("verify pass ");
       return true;
     }
+    // 打印失败
     log.info("verify failed ");
     return false;
   }
 
+  /**
+   * 
+   */
   @Override
   public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler,
       @Nullable ModelAndView modelAndView) throws Exception {
