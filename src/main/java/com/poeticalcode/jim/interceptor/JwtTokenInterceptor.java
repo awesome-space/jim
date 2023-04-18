@@ -34,6 +34,7 @@ public class JwtTokenInterceptor implements HandlerInterceptor {
   @Override
   public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
     String token = JwtUtil.getToken(request);
+    // 打印 token
     log.info("token = {}", token);
     // 校验 Token
     if (Objects.nonNull(token) && JwtUtil.verify(token)) {
