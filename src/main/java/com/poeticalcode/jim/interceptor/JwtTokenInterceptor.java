@@ -36,7 +36,6 @@ public class JwtTokenInterceptor implements HandlerInterceptor {
     String token = JwtUtil.getToken(request);
     // 打印 token
     log.info("token = {}", token);
-    // 校验 Token
     if (Objects.nonNull(token) && JwtUtil.verify(token)) {
       log.info("verify pass ");
       return true;
